@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.ID, "login_link_inv")
-    CART_BUTTON = (By.CSS_SELECTOR, ".basket-mini a.btn.btn-default")
+    BASKET_BUTTON = (By.CSS_SELECTOR, ".basket-mini a.btn.btn-default")
     USER_ICON = (By.CLASS_NAME, "icon-user")
 
 class LoginPageLocators():
@@ -18,16 +18,16 @@ class LoginPageLocators():
 
 
 class ProductPageLocators:
-    BUTTON_ADD_TO_CART = (By.CLASS_NAME, "btn-add-to-basket")
+    BUTTON_ADD_TO_BASKET = (By.CLASS_NAME, "btn-add-to-basket")
     ADDING_SUCCESS = (By.CSS_SELECTOR, "div.alert-success")
-    ALERT_ADDED_TO_CART = (By.CSS_SELECTOR,
+    ALERT_ADDED_TO_BASKET = (By.CSS_SELECTOR,
                            "#messages>div:first-child .alertinner strong")
-    ALERT_CART_STATUS = (By.CSS_SELECTOR, ".alert-noicon.alert-info p")
+    ALERT_BASKET_STATUS = (By.CSS_SELECTOR, ".alert-noicon.alert-info p")
     PRICE_VALUE = (By.CLASS_NAME, "price_color")
     PRODUCT_NAME = (By.TAG_NAME, "h1")
     PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price_color")
 
 
-class CartPageLocators:
-    CART_ELEMENT = (By.CLASS_NAME, "basket-items")
+class BasketPageLocators:
+    BASKET_ELEMENT = (By.CLASS_NAME, "basket-items")
     BASKET_EMPTY_TEXT_ELEMENT = (By.CSS_SELECTOR, "div#content_inner > p")

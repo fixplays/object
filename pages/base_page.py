@@ -67,8 +67,8 @@ class BasePage:
     def go_to_login_page(self):
         self._move_to_page(BasePageLocators.LOGIN_LINK)
 
-    def go_to_cart_page(self):
-        self._move_to_page(BasePageLocators.CART_BUTTON)
+    def go_to_basket_page(self):
+        self._move_to_page(BasePageLocators.BASKET_BUTTON)
 
     def should_be_authorized_user(self):
         assert self.is_element_present(

@@ -1,7 +1,7 @@
 import pytest
-from pages.login_page import LoginPage
-from pages.product_page import ProductPage
-from pages.cart_page import CartPage
+from .pages.login_page import LoginPage
+from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 
 
 
@@ -29,45 +29,45 @@ class TestUserAddToBasketFromProductPage:
     def test_user_cant_see_success_message(self, browser) -> None:
         product_page = ProductPage(browser, product_link)
         product_page.open()
-        product_page.add_to_cart(True)
+        product_page.add_to_basket(True)
         product_page.should_not_see_success_message_upon_opening_product_page()
 
     @pytest.mark.need_review
     @pytest.mark.parametrize("link", links)
-    def test_user_can_add_product_to_(self, browser, link: str) -> None:
+    def test_user_can_add_product_to_basket(self, browser, link: str) -> None:
         product_page = ProductPage(browser, link)
         product_page.open()
-        product_page.add_to_cart(True)
-        product_page.should_be_present_in_cart()
+        product_page.add_to_basket(True)
+        product_page.should_be_present_in_basket()
         product_page.should_check_overall_cost()
 
 
 @pytest.mark.need_review
 @pytest.mark.parametrize("link", links)
-def test_guest_can_add_product_to_cart(browser, link: str) -> None:
+def test_guest_can_add_product_to_basket(browser, link: str) -> None:
     product_page = ProductPage(browser, link)
     product_page.open()
-    product_page.add_to_cart(True)
-    product_page.should_be_present_in_cart()
+    product_page.add_to_basket(True)
+    product_page.should_be_present_in_basket()
     product_page.should_check_overall_cost()
 
 
 @pytest.mark.skip
 @pytest.mark.parametrize("link", offer_links)
-def test_guest_can_add_product_to_cart_with_different_offer_numbers(
+def test_guest_can_add_product_to_basket_with_different_offer_numbers(
         browser, link: str) -> None:
     product_page = ProductPage(browser, link)
     product_page.open()
-    product_page.add_to_cart(True)
-    product_page.should_be_present_in_cart()
+    product_page.add_to_basket(True)
+    product_page.should_be_present_in_basket()
     product_page.should_check_overall_cost()
 
 
-def test_guest_can_add_non_promo_product_to_cart(browser) -> None:
+def test_guest_can_add_non_promo_product_to_basket(browser) -> None:
     product_page = ProductPage(browser, product_link)
     product_page.open()
-    product_page.add_to_cart()
-    product_page.should_be_present_in_cart()
+    product_page.add_to_basket()
+    product_page.should_be_present_in_basket()
     product_page.should_check_overall_cost()
 
 
@@ -94,11 +94,11 @@ def test_guest_can_go_to_login_page_from_product_page(browser) -> None:
 
 
 @pytest.mark.need_review
-def test_guest_cant_see_product_in_cart_opened_from_product_page(browser
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser
                                                                  ) -> None:
     page = ProductPage(browser, product_link)
     page.open()
-    page.go_to_cart_page()
-    cart_page = CartPage(browser, browser.current_url)
-    cart_page.should_be_empty()
-    cart_page.should_contain_empty_text()
+    page.go_to_basket_page()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_be_empty()
+    basket_page.should_contain_empty_text()
